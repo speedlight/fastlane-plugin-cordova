@@ -74,9 +74,9 @@ module Fastlane
         platform = params[:platform]
         if platform && !File.directory?("./platforms/#{platform}")
           if params[:cordova_no_fetch]
-            sh "npx --no-install cordova platform add #{platform} --nofetch"
+            sh "npx --no cordova platform add #{platform} --nofetch"
           else
-            sh "npx --no-install cordova platform add #{platform}"
+            sh "npx --no cordova platform add #{platform}"
           end
         end
       end
@@ -99,7 +99,7 @@ module Fastlane
         ios_args = self.get_ios_args(params) if params[:platform].to_s == 'ios'
 
         if params[:cordova_prepare]
-          sh "npx --no-install cordova prepare #{params[:platform]} #{args.join(' ')} #{ios_args} -- #{android_args}"
+          sh "npx --no cordova prepare #{params[:platform]} #{args.join(' ')} #{ios_args} -- #{android_args}"
         end
 
         if params[:platform].to_s == 'ios' && !params[:build_number].to_s.empty?
@@ -113,7 +113,7 @@ module Fastlane
           )
         end
 
-        sh "npx --no-install cordova compile #{params[:platform]} #{args.join(' ')} #{ios_args} -- #{android_args}"
+        sh "npx --no cordova compile #{params[:platform]} #{args.join(' ')} #{ios_args} -- #{android_args}"
       end
 
       def self.set_build_paths(params)
