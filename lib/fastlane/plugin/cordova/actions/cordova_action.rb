@@ -99,7 +99,7 @@ module Fastlane
         ios_args = self.get_ios_args(params) if params[:platform].to_s == 'ios'
 
         if params[:cordova_prepare]
-          sh "npx --no cordova prepare #{params[:platform]} #{args.join(' ')} #{ios_args} -- #{android_args}"
+          Actions.sh("npx --no cordova prepare #{params[:platform]} #{args.join(' ')} #{ios_args} -- #{android_args}", log: false)
         end
 
         if params[:platform].to_s == 'ios' && !params[:build_number].to_s.empty?
@@ -113,7 +113,7 @@ module Fastlane
           )
         end
 
-        sh "npx --no cordova compile #{params[:platform]} #{args.join(' ')} #{ios_args} -- #{android_args}"
+        Actions.sh("npx --no cordova compile #{params[:platform]} #{args.join(' ')} #{ios_args} -- #{android_args}", log: false)
       end
 
       # @param [String] platforms_output The output from running +cordova platform ls+.
